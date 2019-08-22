@@ -1,0 +1,30 @@
+<?php
+
+return Camelot\CsFixer\Config::create()
+    ->addRules(
+        Camelot\CsFixer\Rules::create()
+            ->risky()
+            ->php71()
+    )
+    ->addRules([
+        '@PHPUnit60Migration:risky'  => true,
+        'declare_strict_types'       => true,
+        'header_comment' => [
+            'header' => <<<'EOD'
+This file is part of a Camelot Project package.
+
+(c) The Camelot Project
+
+For the full copyright and license information, please view the LICENSE file
+that was distributed with this source code.
+EOD
+        ],
+        'native_function_invocation' => [
+            'include' => ['@compiler_optimized']
+        ],
+        'no_superfluous_phpdoc_tags' => true,
+        'php_unit_strict'            => false,
+    ])
+    ->in('src')
+    ->in('tests')
+;
