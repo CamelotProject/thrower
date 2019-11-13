@@ -31,7 +31,7 @@ class Thrower
     /**
      * Call the given callable with given args, but throws an ErrorException when an error/warning/notice is triggered.
      *
-     * @throws \ErrorException when an error/warning/notice is triggered
+     * @throws ErrorException when an error/warning/notice is triggered
      */
     public static function call(callable $callable, ...$args)
     {

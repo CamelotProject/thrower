@@ -14,6 +14,8 @@ declare(strict_types=1);
 namespace Camelot\Thrower\Tests;
 
 use Camelot\Thrower\Thrower;
+use ErrorException;
+use Exception;
 use PHPUnit\Framework\TestCase;
 
 class ThrowerTest extends TestCase
@@ -78,11 +80,11 @@ class ThrowerTest extends TestCase
                     trigger_error('I errored', E_USER_ERROR);
                 }
             );
-        } catch (\ErrorException $e) {
-        } catch (\Exception $e) {
+        } catch (ErrorException $e) {
+        } catch (Exception $e) {
         }
 
-        $this->assertInstanceOf(\ErrorException::class, $e);
+        $this->assertInstanceOf(ErrorException::class, $e);
         $this->assertSame('I errored', $e->getMessage());
         $this->assertSame(E_USER_ERROR, $e->getSeverity());
 

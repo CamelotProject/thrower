@@ -9,6 +9,11 @@ return Camelot\CsFixer\Config::create()
     ->addRules([
         '@PHPUnit60Migration:risky'  => true,
         'declare_strict_types'       => true,
+        'global_namespace_import'    => [
+            'import_classes' => true,
+            'import_constants' => true,
+            'import_functions' => true,
+        ],
         'header_comment' => [
             'header' => <<<'EOD'
 This file is part of a Camelot Project package.
