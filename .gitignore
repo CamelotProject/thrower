@@ -3,6 +3,6 @@ composer.lock
 
 /coverage.xml
 /.php_cs
-/.php_cs.cache
+/.php-cs-fixer.cache
 /phpcs.xml
 /phpunit.xml

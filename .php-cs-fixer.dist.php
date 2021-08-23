@@ -1,19 +1,16 @@
 <?php
 
+declare(strict_types=1);
+
 return Camelot\CsFixer\Config::create()
     ->addRules(
         Camelot\CsFixer\Rules::create()
             ->risky()
-            ->php71()
+            ->php73()
+            ->phpUnit75()
     )
     ->addRules([
-        '@PHPUnit60Migration:risky'  => true,
-        'declare_strict_types'       => true,
-        'global_namespace_import'    => [
-            'import_classes' => true,
-            'import_constants' => true,
-            'import_functions' => true,
-        ],
+        '@PhpCsFixer:risky' => true,
         'header_comment' => [
             'header' => <<<'EOD'
 This file is part of a Camelot Project package.
@@ -27,8 +24,6 @@ EOD
         'native_function_invocation' => [
             'include' => ['@compiler_optimized']
         ],
-        'no_superfluous_phpdoc_tags' => true,
-        'php_unit_strict'            => false,
     ])
     ->in('src')
     ->in('tests')

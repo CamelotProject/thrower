@@ -14,7 +14,6 @@ declare(strict_types=1);
 namespace Camelot\Thrower;
 
 use ErrorException;
-use function call_user_func_array;
 
 /**
  * Temporarily set PHP error reporting to throw ErrorExceptions.
@@ -26,6 +25,11 @@ class Thrower
     /** @var callable */
     private static $handler;
 
+    /** @codeCoverageIgnore */
+    private function __construct()
+    {
+    }
+
     /** @noinspection PhpDocSignatureInspection */
 
     /**
@@ -36,8 +40,9 @@ class Thrower
     public static function call(callable $callable, ...$args)
     {
         static::set();
+
         try {
-            return call_user_func_array($callable, $args);
+            return \call_user_func_array($callable, $args);
         } finally {
             restore_error_handler();
         }
@@ -48,7 +53,7 @@ class Thrower
      *
      * To revert call {@see restore_error_handler}.
      *
-     * @return callable|null the previous handler
+     * @return null|callable the previous handler
      */
     public static function set(): ?callable
     {
@@ -59,12 +64,5 @@ class Thrower
         }
 
         return set_error_handler(static::$handler, E_ALL & ~E_DEPRECATED & ~E_USER_DEPRECATED);
-    }
-
-    /**
-     * @codeCoverageIgnore
-     */
-    private function __construct()
-    {
     }
 }
